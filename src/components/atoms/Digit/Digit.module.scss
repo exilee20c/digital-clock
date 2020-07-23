@@ -1,3 +1,63 @@
 .wrapper {
+  margin: 0 0.1em;
   display: inline-block;
+  position: relative;
+  width: 0.5em;
+  height: 1em;
+  vertical-align: text-top;
+
+  .dash {
+    width: 4px;
+    height: 4px;
+    background-color: #cccccc;
+    position: absolute;
+    transition: background-color 0.3s ease;
+
+    &.active {
+      background-color: #000000;
+    }
+
+    &.horizontal {
+      width: 0.5em;
+      left: 50%;
+      transform: translateX(-50%) translateY(-2px);
+    }
+
+    &.vertical {
+      height: 0.5em;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    &.dash-1 {
+      top: 0;
+    }
+
+    &.dash-2 {
+      top: 50%;
+    }
+
+    &.dash-3 {
+      top: 100%;
+    }
+
+    &.dash-4,
+    &.dash-5 {
+      top: 0%;
+    }
+
+    &.dash-6,
+    &.dash-7 {
+      top: 50%;
+    }
+
+    &.dash-4,
+    &.dash-6 {
+      left: 0;
+    }
+
+    &.dash-5,
+    &.dash-7 {
+      left: 100%;
+    }
+  }
 }
