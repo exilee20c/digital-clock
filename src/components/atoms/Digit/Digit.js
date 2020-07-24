@@ -25,6 +25,7 @@ function Digit({ value }) {
         .concat(new Array(4).fill("vertical"))
         .map((orientation, i) => (
           <div
+            key={i}
             className={
               c["dash"] +
               " " +
