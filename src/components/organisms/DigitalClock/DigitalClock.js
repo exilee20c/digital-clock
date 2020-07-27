@@ -17,22 +17,32 @@ function mapDigit(digit, i) {
 
 function DigitalClock() {
   const [date, setDate] = useState(new Date());
-  const refreshDate = useRef(() => setDate(new Date()));
+  const dateRef = useRef(date);
+
+  const refreshDate = useRef(() => {
+    const newDate = new Date();
+    setDate(newDate);
+    dateRef.current = newDate;
+    nextTick.current();
+  });
+
+  const nextTick = useRef(() =>
+    setTimeout(refreshDate.current, 1000 - dateRef.current.getMilliseconds())
+  );
 
   useEffect(() => {
-    const interval = setInterval(refreshDate.current, 1000);
-    return () => clearInterval(interval);
+    const timeout = nextTick.current();
+    return () => clearTimeout(timeout);
   }, []);
 
   const HH = getZeroPadString(date.getHours());
   const mm = getZeroPadString(date.getMinutes());
   const ss = getZeroPadString(date.getSeconds());
-  const SSS = getZeroPadString(date.getMilliseconds(), 2);
 
   return (
     <div>
       {Array.from(HH).map(mapDigit)}:{Array.from(mm).map(mapDigit)}:
-      {Array.from(ss).map(mapDigit)}:{Array.from(SSS).map(mapDigit)}
+      {Array.from(ss).map(mapDigit)}
     </div>
   );
 }
