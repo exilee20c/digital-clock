@@ -1,19 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import Digit from "../../atoms/Digit";
-
-function getZeroPadString(number, stack = 1) {
-  const remainStack = stack - 1;
-  const fn =
-    remainStack > 0 ? (i) => getZeroPadString(i, remainStack) : (i) => i;
-
-  return number.toString().replace(/([0-9]*)?([0-9])$/g, function (_, $1, $2) {
-    return `${fn($1 || 0)}${$2}`;
-  });
-}
-
-function mapDigit(digit, i) {
-  return <Digit key={i} value={+digit} />;
-}
+import mapDigit from "../../../helpers/mapDigit";
+import getZeroPadString from "../../../helpers/getZeroPadString";
 
 function DigitalClock() {
   const [date, setDate] = useState(new Date());

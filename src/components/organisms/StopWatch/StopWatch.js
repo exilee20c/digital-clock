@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import c from "./StopWatch.module.scss";
+import Time from "../Time/Time";
+import { getTimesFromMillis } from "../../../helpers/time";
 
 function StopWatch(props) {
   const [active, setActive] = useState(false);
@@ -68,7 +70,7 @@ function StopWatch(props) {
     <div className={c["wrapper"]}>
       <div>
         <div>Elapsed Times</div>
-        {elapsedTime}
+        <Time {...getTimesFromMillis(elapsedTime)} />
       </div>
       <button onClick={handleStartClick}>Start</button>
       <button onClick={handleStopClick}>Stop</button>

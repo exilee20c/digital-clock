@@ -5,7 +5,7 @@ import StopWatch from "./components/organisms/StopWatch/StopWatch";
 function App() {
   return (
     <>
-      <DigitalClock />
+      {/* <DigitalClock /> */}
       <StopWatch />
     </>
   );
