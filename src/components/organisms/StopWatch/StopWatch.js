@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import c from "./StopWatch.module.scss";
 import Time from "../Time/Time";
 import { getTimesFromMillis } from "../../../helpers/time";
@@ -78,7 +78,9 @@ function StopWatch(props) {
       <button onClick={handleResetClick.current}>Reset</button>
       <ol>
         {lapTimes.map((time, i) => (
-          <li key={i}>{time}</li>
+          <li key={i}>
+            <Time {...getTimesFromMillis(time)} />
+          </li>
         ))}
       </ol>
     </div>
